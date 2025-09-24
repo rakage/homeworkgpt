@@ -1,0 +1,377 @@
+@import "tailwindcss";
+
+/* WriteHuman Design System */
+:root {
+  --primary: #7c3aed;
+  --primary-soft: #a78bfa;
+  --accent: #f472b6;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --bg-from: #f8f7ff;
+  --bg-to: #fdf2ff;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --shadow-card: 0 10px 30px rgba(16, 24, 40, 0.08);
+  --shadow-card-hover: 0 20px 40px rgba(16, 24, 40, 0.12);
+  --radius: 1.25rem;
+  --font-weight-headline: 800;
+  --font-weight-body: 400;
+  --tracking: -0.025em;
+}
+
+body {
+  background: linear-gradient(180deg, var(--bg-from) 0%, var(--bg-to) 100%);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system;
+  color: var(--ink);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2.25rem;
+  }
+  h3 {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3.75rem;
+  }
+  h2 {
+    font-size: 3rem;
+  }
+  h3 {
+    font-size: 2.25rem;
+  }
+}
+
+/* Container */
+.container {
+  margin: 0 auto;
+  max-width: 80rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Section spacing */
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+/* Hero height */
+.hero-height {
+  min-height: min(88vh, 900px);
+}
+
+/* Gradients */
+.bg-page-gradient {
+  background: linear-gradient(180deg, var(--bg-from) 0%, var(--bg-to) 100%);
+}
+
+.bg-hero-radial {
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(124, 58, 237, 0.03) 0%,
+    rgba(167, 139, 250, 0.02) 40%,
+    transparent 70%
+  );
+}
+
+.headline-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--primary-soft) 0%,
+    var(--accent) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 2s ease-in-out infinite;
+  background-size: 200% auto;
+}
+
+/* Glass panel effect */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px) saturate(1.8) brightness(1.1);
+  -webkit-backdrop-filter: blur(16px) saturate(1.8) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.12);
+}
+
+/* Header glass effect support */
+@supports (backdrop-filter: blur(1px)) {
+  .header-glass {
+    backdrop-filter: blur(16px) saturate(1.8) brightness(1.05);
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .header-glass {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+/* Smooth transitions for glass effects */
+.glass-transition {
+  transition: background-color 0.3s ease-out,
+              backdrop-filter 0.3s ease-out,
+              box-shadow 0.4s ease-out,
+              border-bottom 0.3s ease-out;
+  will-change: background-color, backdrop-filter, box-shadow, border-bottom;
+}
+
+/* Performance optimizations */
+.header-optimize {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+/* Card */
+.card {
+  background-color: var(--card);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.12);
+}
+
+/* Input styles */
+.input,
+.textarea {
+  width: 100%;
+  border-radius: 1.25rem;
+  border: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 0.75rem 1rem;
+  color: var(--ink);
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* Button styles */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border-radius: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #6d28d9;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-radius: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.btn-outline {
+  background: var(--card);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  background: rgba(124, 58, 237, 0.02);
+}
+
+/* Text colors */
+.text-primary {
+  color: var(--primary);
+}
+
+.text-ink {
+  color: var(--ink);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-accent {
+  color: var(--accent);
+}
+
+/* Soft blobs */
+.blob-top-left {
+  position: absolute;
+  top: -10rem;
+  left: -10rem;
+  width: 20rem;
+  height: 20rem;
+  background: var(--primary-soft);
+  opacity: 0.08;
+  border-radius: 50%;
+  filter: blur(4rem);
+  animation: float 6s ease-in-out infinite;
+}
+
+.blob-bottom-right {
+  position: absolute;
+  bottom: -10rem;
+  right: -10rem;
+  width: 20rem;
+  height: 20rem;
+  background: var(--accent);
+  opacity: 0.08;
+  border-radius: 50%;
+  filter: blur(4rem);
+  animation: float 6s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* Continuous gradient mesh */
+.gradient-mesh {
+  background-image: 
+    radial-gradient(at 40% 20%, rgba(167, 139, 250, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(244, 114, 182, 0.1) 0px, transparent 50%),
+    radial-gradient(at left bottom, rgba(124, 58, 237, 0.1) 0px, transparent 50%),
+    radial-gradient(at right bottom, rgba(167, 139, 250, 0.05) 0px, transparent 50%);
+}
+
+/* Animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

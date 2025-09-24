@@ -1,0 +1,194 @@
+// Prisma schema for Homework Help GPT with Supabase
+// This includes both homework system and authentication/subscription models
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["public", "auth"]
+}
+
+// ============================================================================
+// HOMEWORK SYSTEM MODELS
+// ============================================================================
+
+model User {
+  id        String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  email     String   @unique @db.VarChar(255)
+  fullName  String?  @map("full_name") @db.VarChar(255)
+  avatarUrl String?  @map("avatar_url")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  // Relations
+  homeworkRequests HomeworkRequest[]
+
+  @@map("users")
+  @@schema("public")
+}
+
+model Subject {
+  id          String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name        String   @unique @db.VarChar(255)
+  description String?
+  icon        String?  @db.VarChar(255)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("subjects")
+  @@schema("public")
+}
+
+model HomeworkRequest {
+  id              String          @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  userId          String          @map("user_id") @db.Uuid
+  subject         String          @db.VarChar(255)
+  question        String
+  difficultyLevel DifficultyLevel @default(beginner) @map("difficulty_level")
+  status          RequestStatus   @default(pending)
+  solution        String?
+  createdAt       DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime        @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("homework_requests")
+  @@schema("public")
+}
+
+// ============================================================================
+// AUTHENTICATION & SUBSCRIPTION MODELS
+// ============================================================================
+
+model Profile {
+  id                 String              @id @db.Uuid
+  email              String              @unique
+  fullName           String?             @map("full_name")
+  avatarUrl          String?             @map("avatar_url")
+  subscriptionTier   SubscriptionTier?   @map("subscription_tier")
+  subscriptionStatus SubscriptionStatus? @map("subscription_status")
+  subscriptionId     String?             @map("subscription_id")
+  customerId         String?             @map("customer_id")
+  currentPeriodStart DateTime?           @map("current_period_start") @db.Timestamptz(6)
+  currentPeriodEnd   DateTime?           @map("current_period_end") @db.Timestamptz(6)
+  createdAt          DateTime            @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt          DateTime            @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  // Relations
+  subscriptions Subscription[]
+  userUsage     UserUsage[]
+
+  @@map("profiles")
+  @@schema("public")
+}
+
+model EmailVerificationCode {
+  id        String               @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  email     String
+  code      String
+  type      VerificationCodeType
+  expiresAt DateTime             @map("expires_at") @db.Timestamptz(6)
+  used      Boolean              @default(false)
+  userData  Json?                @map("user_data")
+  createdAt DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("email_verification_codes")
+  @@schema("public")
+}
+
+model Subscription {
+  id                   String           @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  userId               String           @map("user_id") @db.Uuid
+  stripeSubscriptionId String           @unique @map("stripe_subscription_id")
+  stripeCustomerId     String           @map("stripe_customer_id")
+  status               String
+  tier                 SubscriptionTier
+  billingCycle         BillingCycle     @map("billing_cycle")
+  amount               Int // in cents
+  currency             String           @default("usd")
+  currentPeriodStart   DateTime?        @map("current_period_start") @db.Timestamptz(6)
+  currentPeriodEnd     DateTime?        @map("current_period_end") @db.Timestamptz(6)
+  canceledAt           DateTime?        @map("canceled_at") @db.Timestamptz(6)
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt            DateTime         @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  // Relations
+  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+  @@schema("public")
+}
+
+model UserUsage {
+  id            String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  userId        String   @map("user_id") @db.Uuid
+  month         DateTime @db.Date
+  requestsCount Int      @default(0) @map("requests_count")
+  tier          String
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  // Relations
+  profile Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, month])
+  @@map("user_usage")
+  @@schema("public")
+}
+
+// ============================================================================
+// ENUMS
+// ============================================================================
+
+enum DifficultyLevel {
+  beginner
+  intermediate
+  advanced
+
+  @@schema("public")
+}
+
+enum RequestStatus {
+  pending
+  in_progress @map("in_progress")
+  completed
+  cancelled
+
+  @@schema("public")
+}
+
+enum SubscriptionTier {
+  basic
+  plus
+
+  @@schema("public")
+}
+
+enum SubscriptionStatus {
+  active
+  canceled
+  past_due   @map("past_due")
+  incomplete
+  trialing
+
+  @@schema("public")
+}
+
+enum BillingCycle {
+  monthly
+  yearly
+
+  @@schema("public")
+}
+
+enum VerificationCodeType {
+  signup
+  password_reset @map("password_reset")
+  email_change   @map("email_change")
+  reset_token    @map("reset_token")
+
+  @@schema("public")
+}
