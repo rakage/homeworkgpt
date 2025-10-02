@@ -1,0 +1,13 @@
+2025/10/02-08:54:58.730 17c4 Reusing MANIFEST D:\Raka\Project\Homework Help GPT\homeworkgpt\quillbot-api\chrome_profile\Default\IndexedDB\https_quillbot.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/10/02-08:54:58.730 17c4 Recovering log #16
+2025/10/02-08:54:58.730 17c4 Reusing old log D:\Raka\Project\Homework Help GPT\homeworkgpt\quillbot-api\chrome_profile\Default\IndexedDB\https_quillbot.com_0.indexeddb.leveldb/000016.log 
+2025/10/02-08:54:59.316 3510 Level-0 table #21: started
+2025/10/02-08:54:59.330 3510 Level-0 table #21: 813 bytes OK
+2025/10/02-08:54:59.331 3510 Delete type=0 #16
+2025/10/02-08:54:59.332 17c4 Manual compaction at level-0 from '\x00\x0b\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0c\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/10/02-08:55:15.365 17c4 Compacting 1@1 + 1@2 files
+2025/10/02-08:55:15.370 17c4 Generated table #22@1: 271 keys, 47249 bytes
+2025/10/02-08:55:15.370 17c4 Compacted 1@1 + 1@2 files => 47249 bytes
+2025/10/02-08:55:15.371 17c4 compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/10/02-08:55:15.371 17c4 Delete type=2 #18
+2025/10/02-08:55:15.372 17c4 Delete type=2 #21

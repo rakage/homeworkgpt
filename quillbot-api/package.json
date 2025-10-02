@@ -1,0 +1,37 @@
+{
+  "name": "quillbot-api-automation",
+  "version": "1.0.0",
+  "description": "Puppeteer automation for login and API interaction",
+  "main": "login.js",
+  "scripts": {
+    "start": "node server.js",
+    "login": "node login.js",
+    "test": "node login.js --test",
+    "dev": "node server.js --dev",
+    "humanize": "node humanizer.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "bull": "^4.12.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "ioredis": "^5.4.1",
+    "node-fetch": "^2.7.0",
+    "puppeteer": "^21.11.0",
+    "sqlite3": "^5.1.6",
+    "thesaurus": "^0.0.1",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^21.5.2"
+  },
+  "keywords": [
+    "puppeteer",
+    "automation",
+    "login",
+    "web-scraping"
+  ],
+  "author": "Raka",
+  "license": "MIT"
+}
