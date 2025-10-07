@@ -12,8 +12,12 @@ function loadLoginAutomator() {
 export async function GET(request: NextRequest) {
   try {
     const LoginAutomator = loadLoginAutomator();
+    
+    // Force headless mode on server (always true unless explicitly false)
+    const headless = process.env.HUMANIZER_HEADLESS === 'false' ? false : true;
+    
     const automator = new LoginAutomator({
-      headless: process.env.HUMANIZER_HEADLESS !== 'false',
+      headless: headless,
       persistentProfile: true
     });
 
@@ -63,8 +67,12 @@ export async function POST(request: NextRequest) {
     }
 
     const LoginAutomator = loadLoginAutomator();
+    
+    // Force headless mode on server (always true unless explicitly false)
+    const headless = process.env.HUMANIZER_HEADLESS === 'false' ? false : true;
+    
     const automator = new LoginAutomator({
-      headless: process.env.HUMANIZER_HEADLESS !== 'false',
+      headless: headless,
       persistentProfile: true
     });
 
