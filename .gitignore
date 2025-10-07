@@ -26,3 +26,19 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /lib/generated/prisma
+
+# logs
+/logs
+*.log
+
+# pm2
+.pm2
+
+# quillbot session data
+/quillbot-api/session_data.db
+/quillbot-api/humanizer_data.db
+/quillbot-api/chrome_profile
+/quillbot-api/*.png
+
+# backups
+/backups
