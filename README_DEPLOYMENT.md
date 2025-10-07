@@ -5,7 +5,7 @@
 ```bash
 # 1. On Ubuntu server - Install dependencies
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs build-essential git chromium-browser
+sudo apt install -y nodejs build-essential git
 sudo npm install -g pm2
 
 # 2. Clone and setup
@@ -13,14 +13,18 @@ git clone <your-repo>
 cd <your-repo>
 nano .env.local  # Add your environment variables
 
-# 3. Deploy!
+# 3. Install Chromium dependencies
+chmod +x install-chromium-deps.sh
+./install-chromium-deps.sh
+
+# 4. Deploy!
 chmod +x deploy.sh
 ./deploy.sh
 
-# 4. Login to QuillBot
+# 5. Login to QuillBot
 node check-humanizer-auth.js login your@email.com yourpassword
 
-# 5. Done! Check status
+# 6. Done! Check status
 pm2 status
 ```
 
@@ -30,7 +34,10 @@ pm2 status
 |------|---------|
 | `DEPLOYMENT_UBUNTU.md` | Complete Ubuntu deployment guide |
 | `DEPLOYMENT_CHECKLIST.md` | Step-by-step checklist |
+| `README_DEPLOYMENT.md` | This file - quick reference |
+| `TROUBLESHOOTING.md` | Common issues and solutions |
 | `deploy.sh` | Automated deployment script |
+| `install-chromium-deps.sh` | Install Chromium dependencies |
 | `check-humanizer-auth.js` | Auth management tool |
 | `HUMANIZER_AUTH_SETUP.md` | Authentication setup guide |
 | `ecosystem.config.js` | PM2 configuration (updated) |
