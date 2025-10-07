@@ -1,42 +1,7 @@
-2025/10/02-08:24:45.361 76fc Reusing MANIFEST D:\Raka\Project\Homework Help GPT\homeworkgpt\quillbot-api\chrome_profile\Default\IndexedDB\https_quillbot.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/10/02-08:24:45.361 76fc Recovering log #6
-2025/10/02-08:24:45.361 76fc Reusing old log D:\Raka\Project\Homework Help GPT\homeworkgpt\quillbot-api\chrome_profile\Default\IndexedDB\https_quillbot.com_0.indexeddb.leveldb/000006.log 
-2025/10/02-08:24:46.860 17c4 Level-0 table #10: started
-2025/10/02-08:24:46.863 17c4 Level-0 table #10: 4262 bytes OK
-2025/10/02-08:24:46.865 17c4 Delete type=0 #6
-2025/10/02-08:24:46.866 17c4 Manual compaction at level-0 from '\x00\x06\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x07\x00\x00\x00' @ 0 : 0; will stop at '\x00\x06\x00\x00\x05' @ 229 : 1
-2025/10/02-08:24:46.866 17c4 Compacting 1@0 + 1@1 files
-2025/10/02-08:24:46.903 17c4 Generated table #11@0: 68 keys, 3862 bytes
-2025/10/02-08:24:46.903 17c4 Compacted 1@0 + 1@1 files => 3862 bytes
-2025/10/02-08:24:46.905 17c4 compacted to: files[ 0 1 1 0 0 0 0 ]
-2025/10/02-08:24:46.906 17c4 Delete type=2 #10
-2025/10/02-08:24:46.907 17c4 Manual compaction at level-0 from '\x00\x06\x00\x00\x05' @ 229 : 1 .. '\x00\x07\x00\x00\x00' @ 0 : 0; will stop at (end)
-2025/10/02-08:25:23.969 76fc Compacting 1@1 + 1@2 files
-2025/10/02-08:25:23.995 76fc Generated table #12@1: 53 keys, 3751 bytes
-2025/10/02-08:25:23.995 76fc Compacted 1@1 + 1@2 files => 3751 bytes
-2025/10/02-08:25:23.997 76fc compacted to: files[ 0 0 1 0 0 0 0 ]
-2025/10/02-08:25:23.998 76fc Delete type=2 #5
-2025/10/02-08:25:23.998 76fc Delete type=2 #7
-2025/10/02-08:25:23.998 76fc Delete type=2 #11
-2025/10/02-08:31:59.661 21bc Level-0 table #14: started
-2025/10/02-08:31:59.669 21bc Level-0 table #14: 61339 bytes OK
-2025/10/02-08:31:59.671 21bc Delete type=0 #9
-2025/10/02-08:31:59.676 17c4 Manual compaction at level-0 from '\x00\x09\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0a\x00\x00\x00' @ 0 : 0; will stop at (end)
-2025/10/02-08:32:38.990 76fc Compacting 1@1 + 1@2 files
-2025/10/02-08:32:38.999 76fc Generated table #15@1: 132 keys, 44360 bytes
-2025/10/02-08:32:39.001 76fc Compacted 1@1 + 1@2 files => 44360 bytes
-2025/10/02-08:32:39.008 76fc compacted to: files[ 0 0 1 0 0 0 0 ]
-2025/10/02-08:32:39.008 76fc Delete type=2 #12
-2025/10/02-08:32:39.009 76fc Delete type=2 #14
-2025/10/02-08:54:58.663 76fc Level-0 table #17: started
-2025/10/02-08:54:58.669 76fc Level-0 table #17: 15297 bytes OK
-2025/10/02-08:54:58.670 76fc Delete type=0 #13
-2025/10/02-08:54:58.670 76fc Manual compaction at level-0 from (begin) .. (end); will stop at (end)
-2025/10/02-08:54:58.671 76fc Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x0a\x0b\x02\x01\x0c\x00p\x00p\x00h\x00r\x00S\x00e\x00t\x00t\x00i\x00n\x00g\x00s' @ 1110 : 1
-2025/10/02-08:54:58.671 76fc Compacting 1@1 + 1@2 files
-2025/10/02-08:54:58.675 76fc Generated table #18@1: 264 keys, 47316 bytes
-2025/10/02-08:54:58.675 76fc Compacted 1@1 + 1@2 files => 47316 bytes
-2025/10/02-08:54:58.676 76fc compacted to: files[ 0 0 1 0 0 0 0 ]
-2025/10/02-08:54:58.676 76fc Delete type=2 #15
-2025/10/02-08:54:58.677 76fc Delete type=2 #17
-2025/10/02-08:54:58.677 76fc Manual compaction at level-1 from '\x00\x0a\x0b\x02\x01\x0c\x00p\x00p\x00h\x00r\x00S\x00e\x00t\x00t\x00i\x00n\x00g\x00s' @ 1110 : 1 .. (end); will stop at (end)
+2025/10/07-10:53:20.537 81ac Reusing MANIFEST D:\Raka\Project\Homework Help GPT\homeworkgpt\quillbot-api\chrome_profile\Default\IndexedDB\https_quillbot.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/10/07-10:53:20.555 81ac Recovering log #20
+2025/10/07-10:53:20.556 81ac Reusing old log D:\Raka\Project\Homework Help GPT\homeworkgpt\quillbot-api\chrome_profile\Default\IndexedDB\https_quillbot.com_0.indexeddb.leveldb/000020.log 
+2025/10/07-10:53:21.316 6550 Level-0 table #25: started
+2025/10/07-10:53:21.321 6550 Level-0 table #25: 8864 bytes OK
+2025/10/07-10:53:21.323 6550 Delete type=0 #20
+2025/10/07-10:53:21.324 81ac Manual compaction at level-0 from '\x00\x0c\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x0d\x00\x00\x00' @ 0 : 0; will stop at (end)
