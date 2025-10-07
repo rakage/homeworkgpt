@@ -9,21 +9,26 @@ echo "📦 Updating package list..."
 sudo apt update
 
 # Install all required dependencies for Chromium/Puppeteer
-echo "📦 Installing dependencies..."
+echo "📦 Installing dependencies (this may take a few minutes)..."
 sudo apt install -y \
   ca-certificates \
   fonts-liberation \
+  gconf-service \
   libasound2 \
+  libappindicator3-1 \
   libatk-bridge2.0-0 \
   libatk1.0-0 \
   libc6 \
   libcairo2 \
   libcups2 \
   libdbus-1-3 \
+  libdrm2 \
   libexpat1 \
   libfontconfig1 \
   libgbm1 \
   libgcc1 \
+  libgconf-2-4 \
+  libgdk-pixbuf2.0-0 \
   libglib2.0-0 \
   libgtk-3-0 \
   libnspr4 \
@@ -40,6 +45,7 @@ sudo apt install -y \
   libxext6 \
   libxfixes3 \
   libxi6 \
+  libxkbcommon0 \
   libxrandr2 \
   libxrender1 \
   libxss1 \
@@ -48,13 +54,34 @@ sudo apt install -y \
   wget \
   xdg-utils
 
-# Also install Chromium browser (optional, but helpful)
+# Install Chromium browser and use it instead of bundled Chromium
 echo "📦 Installing Chromium browser..."
 sudo apt install -y chromium-browser
+
+# Check if chromium was installed
+if command -v chromium-browser &> /dev/null; then
+    CHROMIUM_PATH=$(which chromium-browser)
+    echo "✅ Chromium installed at: $CHROMIUM_PATH"
+    
+    # Add to .env.local if not already there
+    if [ -f ".env.local" ]; then
+        if ! grep -q "PUPPETEER_EXECUTABLE_PATH" .env.local; then
+            echo "" >> .env.local
+            echo "# Chromium path for Puppeteer" >> .env.local
+            echo "PUPPETEER_EXECUTABLE_PATH=$CHROMIUM_PATH" >> .env.local
+            echo "✅ Added PUPPETEER_EXECUTABLE_PATH to .env.local"
+        fi
+    else
+        echo "⚠️  Warning: .env.local not found. Please add:"
+        echo "   PUPPETEER_EXECUTABLE_PATH=$CHROMIUM_PATH"
+    fi
+else
+    echo "⚠️  Warning: Chromium installation may have failed"
+fi
 
 echo ""
 echo "✅ Dependencies installed successfully!"
 echo ""
 echo "Now try again:"
-echo "  node check-humanizer-auth.js"
+echo "  node check-humanizer-auth.js login your@email.com yourpassword"
 echo ""
