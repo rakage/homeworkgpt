@@ -1,4 +1,5 @@
-const HUMANIZER_API_URL = process.env.NEXT_PUBLIC_HUMANIZER_API_URL || 'http://localhost:3001';
+// Use empty string to make requests to the same domain (Next.js API routes)
+const HUMANIZER_API_URL = process.env.NEXT_PUBLIC_HUMANIZER_API_URL || '';
 
 export interface HumanizeOptions {
   includeThesaurus?: boolean;
@@ -71,15 +72,15 @@ export class HumanizerService {
   }
 
   static async getJobStatus(jobId: string): Promise<JobStatus> {
-    return this.request<JobStatus>(`/api/status/${jobId}`);
+    return this.request<JobStatus>(`/api/humanize/status/${jobId}`);
   }
 
   static async getJobResult(jobId: string): Promise<HumanizeResult> {
-    return this.request<HumanizeResult>(`/api/result/${jobId}`);
+    return this.request<HumanizeResult>(`/api/humanize/result/${jobId}`);
   }
 
   static async cancelJob(jobId: string): Promise<{ success: boolean; message: string }> {
-    return this.request<{ success: boolean; message: string }>(`/api/job/${jobId}`, {
+    return this.request<{ success: boolean; message: string }>(`/api/humanize/job/${jobId}`, {
       method: 'DELETE',
     });
   }
